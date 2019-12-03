@@ -19,4 +19,3 @@ define( 'CUSTOMIZER_RESET_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CUSTOMIZER_RESET_PLUGIN_VERSION', '0.0.2' );
 
 require __DIR__ . '/autoload.php';
-

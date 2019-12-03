@@ -1,15 +1,5 @@
-#customize-header-actions {
-  padding-left: 62px;
-}
-
-#customize-header-actions .customizer-reset-button {
-  position: relative;
-  float: left;
-  margin-top: 9px;
-}
-
 .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
-  bottom: 90px;
+  bottom: 110px;
 }
 
 .customizer-reset-footer {
@@ -17,9 +7,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 45px;
+  height: 65px;
   background-color: #eee;
   border-bottom: 1px solid #ddd;
+}
+
+.customizer-reset-footer .button-primary {
+  padding: 10px;
 }
 
 .customizer-reset-footer .customizer-reset-button {
@@ -27,5 +21,5 @@
 }
 
 .expanded .wp-full-overlay-footer {
-  height: 90px;
+  height: 110px;
 }
