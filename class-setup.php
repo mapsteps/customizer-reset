@@ -61,9 +61,10 @@ class Setup {
 			'customizer-reset',
 			'customizerResetObj',
 			array(
-				'buttonText'  => __( 'Reset', 'customizer-reset' ),
-				'confirmText' => __( "Warning! This will remove all customizations have been made via customizer to this theme!\n\nThis action is irreversible!", 'customizer-reset' ),
-				'nonce'       => wp_create_nonce( 'reset-customizer' ),
+				'headerButtonText' => __( 'Reset', 'customizer-reset' ),
+				'footerButtonText' => __( 'Reset Customizer', 'customizer-reset' ),
+				'confirmationText' => __( "Warning! This will remove all customizations have been made via customizer to this theme!\n\nThis action is irreversible!", 'customizer-reset' ),
+				'nonce'            => wp_create_nonce( 'customizer-reset' ),
 			)
 		);
 	}
@@ -76,7 +77,7 @@ class Setup {
 			wp_send_json_error( 'not_preview' );
 		}
 
-		if ( ! wp_verify_nonce( 'customizer-reset', 'nonce' ) ) {
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'customizer-reset' ) ) {
 			wp_send_json_error( 'invalid_nonce' );
 		}
 

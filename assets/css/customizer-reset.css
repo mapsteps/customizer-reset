@@ -1,5 +1,31 @@
+#customize-header-actions {
+  padding-left: 62px;
+}
+
 #customize-header-actions .customizer-reset-button {
+  position: relative;
   float: left;
   margin-top: 9px;
-  margin-left: 40px;
+}
+
+.wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
+  bottom: 90px;
+}
+
+.customizer-reset-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 45px;
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
+}
+
+.customizer-reset-footer .customizer-reset-button {
+  width: 90%;
+}
+
+.expanded .wp-full-overlay-footer {
+  height: 90px;
 }
