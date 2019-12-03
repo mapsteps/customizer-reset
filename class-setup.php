@@ -16,7 +16,10 @@ class Setup {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'setup_text_domain' ) );
-		add_action( 'acf/init', array( $this, 'setup_options_page' ) );
+		add_action( 'admin_menu', array( $this, 'add_submenu' ) );
+		add_action( 'customize_register', array( $this, 'customize_register' ) );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_ajax_customizer_reset', array( $this, 'handle_ajax' ) );
 	}
 
 	/**
@@ -27,9 +30,71 @@ class Setup {
 	}
 
 	/**
-	 * Setup options page.
+	 * Add submenu under "Appearance" menu item.
 	 */
-	public function setup_options_page() {
-		//
+	public function add_submenu() {
+		global $submenu;
+
+		$submenu['themes.php'][] = array( 'Reset Customizer', 'manage_options', admin_url( 'customize.php' ) );
+	}
+
+	/**
+	 * Store a reference to `WP_Customize_Manager` instance
+	 *
+	 * @param object $wp_customize `WP_Customize_Manager` instance.
+	 */
+	public function customize_register( $wp_customize ) {
+		$this->wp_customize = $wp_customize;
+	}
+
+	/**
+	 * Enqueue assets.
+	 */
+	public function enqueue_scripts() {
+		// CSS.
+		wp_enqueue_style( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/css/customizer-reset.css', array(), CUSTOMIZER_RESET_PLUGIN_VERSION );
+
+		// JS.
+		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/js/customizer-reset.js', array(), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
+
+		wp_localize_script(
+			'customizer-reset',
+			'customizerResetObj',
+			array(
+				'buttonText'  => __( 'Reset', 'customizer-reset' ),
+				'confirmText' => __( "Warning! This will remove all customizations have been made via customizer to this theme!\n\nThis action is irreversible!", 'customizer-reset' ),
+				'nonce'       => wp_create_nonce( 'reset-customizer' ),
+			)
+		);
+	}
+
+	/**
+	 * Handle ajax request of customizer reset.
+	 */
+	public function handle_ajax() {
+		if ( ! $this->wp_customize->is_preview() ) {
+			wp_send_json_error( 'not_preview' );
+		}
+
+		if ( ! wp_verify_nonce( 'customizer-reset', 'nonce' ) ) {
+			wp_send_json_error( 'invalid_nonce' );
+		}
+
+		$this->reset_customizer();
+		wp_send_json_success();
+	}
+
+	/**
+	 * Reset customizer.
+	 */
+	public function reset_customizer() {
+		$settings = $this->wp_customize->settings();
+
+		// remove theme_mod settings registered in customizer.
+		foreach ( $settings as $setting ) {
+			if ( 'theme_mod' === $setting->type ) {
+				remove_theme_mod( $setting->id );
+			}
+		}
 	}
 }
