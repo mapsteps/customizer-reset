@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset
 Requires at least: 4.0
 Tested up to: 5.3
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,5 +27,7 @@ Navigate to Appearance > Reset Customizer or Appearance > Customize and click th
 
 == Changelog ==
 
+= 1.0.1 December 05, 2019 =
+* Minor tweaks & improvements
 = 1.0 December 03, 2019 =
 * Initial Release
