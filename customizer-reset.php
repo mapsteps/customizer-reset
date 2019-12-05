@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Customizer Reset
  * Plugin URI: https://customizerreset.io/
- * Description: The best WordPress customizer reset.
+ * Description: Reset the WordPress customizer settings with a simple click of a button.
  * Version: 1.0
- * Author: MapSteps
+ * Author: David Vongries
  * Author URI: https://github.com/MapSteps/
  * Text Domain: customizer-reset
  *

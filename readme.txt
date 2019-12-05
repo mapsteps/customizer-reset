@@ -1,6 +1,6 @@
 === Customizer Reset ===
 Contributors: davidvongries
-Tags: Reset Customizer, Customizer Reset
+Tags: Customizer Reset, Customizer, Reset
 Requires at least: 4.0
 Tested up to: 5.3
 Stable tag: 1.0
