@@ -61,9 +61,8 @@ class Setup {
 			'customizer-reset',
 			'customizerResetObj',
 			array(
-				'headerButtonText' => __( 'Reset', 'customizer-reset' ),
 				'footerButtonText' => __( 'Reset Customizer', 'customizer-reset' ),
-				'confirmationText' => __( "Warning! This will remove all customizations have been made via customizer to this theme!\n\nThis action is irreversible!", 'customizer-reset' ),
+				'confirmationText' => __( "Warning! This will remove all customizations made for this theme via the WordPress customizer.\n\nThis action is irreversible!", 'customizer-reset' ),
 				'nonce'            => wp_create_nonce( 'customizer-reset' ),
 			)
 		);
