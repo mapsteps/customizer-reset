@@ -1,4 +1,6 @@
 /**
+ * Setting up customizer reset.
+ *
  * Used global objects:
  * - wp
  * - ajaxurl
@@ -6,22 +8,82 @@
  * - customizerResetObj
  */
 (function ($) {
-	var $buttonsWrapper = $('<div class="customizer-reset-footer"></div>');
+	/**
+	 * Import form popup.
+	 * 
+	 * @var object importFormPopup The tinglejs object.
+	 */
+	var importFormPopup;
 
-	var $resetButton = $(
-		'<button name="customizer-reset" class="button-primary customizer-reset-button">' + customizerResetObj.buttons.reset.text + '</button>'
-	);
+	/**
+	 * Setup the flow.
+	 */
+	function init() {
+		setupButtons();
+		setupPopup();
+	}
 
-	var $exportButton = $(
-		'<a href="' + customizerResetObj.customizerUrl + '?action=customizer_export&nonce=' + customizerResetObj.nonces.export + '" class="customizer-export-link hint--top" data-hint="' + customizerResetObj.buttons.export.text + '"><img alt="' + customizerResetObj.buttons.export.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/export.svg"></a>'
-	);
+	/**
+	 * Setup reset, export, & import customizer buttons.
+	 */
+	function setupButtons() {
+		var $buttonsWrapper = $('<div class="customizer-reset-footer"></div>');
 
-	var $importButton = $(
-		'<a href="' + customizerResetObj.customizerUrl + '?action=customizer_import&nonce=' + customizerResetObj.nonces.import + '" class="customizer-export-link hint--top" data-hint="' + customizerResetObj.buttons.import.text + '"><img alt="' + customizerResetObj.buttons.import.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/import.svg"></a>'
-	);
+		var $resetButton = $(
+			'<button name="customizer-reset" class="button-primary customizer-reset-button">' + customizerResetObj.buttons.reset.text + '</button>'
+		);
 
-	$resetButton.on('click', resetCustomizer);
+		var $exportButton = $(
+			'<a href="' + customizerResetObj.customizerUrl + '?action=customizer_export&nonce=' + customizerResetObj.nonces.export + '" class="customizer-export-import customizer-export-link hint--top" data-hint="' + customizerResetObj.buttons.export.text + '"><img alt="' + customizerResetObj.buttons.export.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/export.svg"></a>'
+		);
 
+		var $importButton = $(
+			'<a href="" class="customizer-export-import customizer-import-trigger hint--top" data-hint="' + customizerResetObj.buttons.import.text + '"><img alt="' + customizerResetObj.buttons.import.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/import.svg"></a>'
+		);
+
+		$resetButton.on('click', resetCustomizer);
+
+		$buttonsWrapper.append($resetButton);
+		$buttonsWrapper.append($exportButton);
+		$buttonsWrapper.append($importButton);
+		$('#customize-footer-actions').prepend($buttonsWrapper);
+	}
+
+	/**
+	 * Setup import form popup.
+	 */
+	function setupPopup() {
+		// Instanciate new modal.
+		importFormPopup = new tingle.modal({
+			footer: true,
+			closeMethods: ['escape', 'button']
+		});
+
+		// Set content.
+		importFormPopup.setContent(customizerResetObj.importForm.templates);
+
+		// Add submit button.
+		importFormPopup.addFooterBtn(customizerResetObj.importForm.labels.submit, 'button button-primary button-large tingle-btn--pull-right', function () {
+			document.querySelector('.customizer-import-form').submit();
+		});
+
+		// Add cancel button.
+		importFormPopup.addFooterBtn(customizerResetObj.importForm.labels.cancel, 'button button-large tingle-btn--pull-right cancel-button', function () {
+			importFormPopup.close();
+		});
+
+		// Set the open trigger.
+		document.querySelector('.customizer-import-trigger').addEventListener('click', function (e) {
+			e.preventDefault();
+			importFormPopup.open();
+		})
+	}
+
+	/**
+	 * Reset customizer.
+	 * 
+	 * @param Event e Event object.
+	 */
 	function resetCustomizer(e) {
 		e.preventDefault();
 
@@ -47,8 +109,7 @@
 		});
 	}
 
-	$buttonsWrapper.append($resetButton);
-	$buttonsWrapper.append($exportButton);
-	$buttonsWrapper.append($importButton);
-	$('#customize-footer-actions').prepend($buttonsWrapper);
+	// Start!
+	init();
+
 })(jQuery);

@@ -22,7 +22,7 @@
 	width: 76%;
 }
 
-.customizer-reset-footer .customizer-export-link {
+.customizer-reset-footer .customizer-export-import {
 	width: 12%;
 	display: flex;
 	align-items: center;
@@ -31,15 +31,78 @@
 	cursor: pointer;
 }
 
-#customize-controls .customizer-reset-footer .customizer-export-link:hover img {
+#customize-controls
+	.customizer-reset-footer
+	.customizer-export-import:hover
+	img {
 	opacity: 0.75;
 }
 
-#customize-controls .customizer-reset-footer .customizer-export-link img {
+#customize-controls .customizer-reset-footer .customizer-export-import img {
 	max-width: 16px;
 	opacity: 0.4;
 }
 
 .expanded .wp-full-overlay-footer {
 	height: 110px;
+}
+
+.tingle-modal {
+	background-color: rgba(0, 0, 0, 0.9);
+	/** Should be on top of .wp-full-overlay */
+	z-index: 500001;
+}
+
+.tingle-modal-box__content {
+	padding: 0;
+}
+
+.tingle-modal::before {
+	backdrop-filter: blur(2px);
+}
+
+.tingle-modal-box {
+	max-width: 500px;
+	overflow: hidden;
+}
+
+.customizer-import-header {
+	margin: 0;
+	padding: 1rem 2rem;
+	line-height: 1.2;
+	font-size: 15px;
+}
+
+.customizer-import-header,
+.tingle-modal-box__footer {
+	background-color: #f3f3f3;
+}
+
+.tingle-modal-box__footer {
+	padding: 1rem 2rem;
+}
+.customizer-import-content {
+	padding: 1.5rem 2rem;
+}
+
+.customizer-import-form .field:last-child {
+	margin-bottom: 0;
+}
+
+.customizer-import-form .field {
+	margin-bottom: 20px;
+}
+
+.customizer-import-form .label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+
+.customizer-import-file {
+	font-size: 11px;
+}
+
+.tingle-modal-box__footer .cancel-button {
+	margin-right: 12px;
 }

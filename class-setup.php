@@ -24,6 +24,7 @@ class Setup {
 		add_action( 'customize_register', array( $this, 'export' ) );
 		add_action( 'customize_register', array( $this, 'import' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'customize_controls_print_scripts', [$this, 'controls_print_scripts'] );
 		add_action( 'wp_ajax_customizer_reset', array( $this, 'handle_ajax' ) );
 	}
 
@@ -59,11 +60,16 @@ class Setup {
 		global $wp;
 
 		// CSS.
+		wp_enqueue_style( 'tingle', 'https://cdn.jsdelivr.net/npm/tingle.js@0.15.2/dist/tingle.min.css', array(), null );
 		wp_enqueue_style( 'hint', 'https://cdn.jsdelivr.net/npm/hint.css@2.6.0/hint.min.css', array(), null );
 		wp_enqueue_style( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/css/customizer-reset.css', array(), CUSTOMIZER_RESET_PLUGIN_VERSION );
 
 		// JS.
-		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/js/customizer-reset.js', array(), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'tingle', 'https://cdn.jsdelivr.net/npm/tingle.js@0.15.2/dist/tingle.min.js', array(), null, true );
+		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/js/customizer-reset.js', array( 'jquery', 'tingle' ), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
+
+		// Require the customizer import form.
+		require __DIR__ . '/templates/import-form.php';
 
 		wp_localize_script(
 			'customizer-reset',
@@ -84,13 +90,20 @@ class Setup {
 					'resetWarning' => __( "Warning! This will remove all customizations made for this theme via the WordPress customizer.\n\nThis action is irreversible!", 'customizer-reset' ),
 					'emptyImport'  => __( 'Please choose a file to import.', 'customizer-reset' ),
 				),
+				'importForm'    => array(
+					'templates' => $customizer_import_form,
+					'labels'    => array(
+						'submit' => __( 'Import Now', 'customizer-reset' ),
+						'cancel' => __( 'Cancel', 'customizer-reset' ),
+						'close'  => __( 'Close', 'customizer-reset' ),
+					),
+				),
 				'customizerUrl' => admin_url( 'customize.php' ),
 				'pluginUrl'     => CUSTOMIZER_RESET_PLUGIN_URL,
 				'currentUrl'    => home_url( $wp->request ),
 				'nonces'        => array(
 					'reset'  => wp_create_nonce( 'customizer-reset' ),
 					'export' => wp_create_nonce( 'customizer-export' ),
-					'import' => wp_create_nonce( 'customizer-import' ),
 				),
 			)
 		);
@@ -163,10 +176,21 @@ class Setup {
 			return;
 		}
 
-		require_once __DIR__ . '/helpers/class-customizer-reset.php';
+		require_once __DIR__ . '/helpers/class-customizer-setting.php';
 
 		$importer = new Import();
 
 		$importer->import();
+	}
+
+	/**
+	 * Prints scripts for the control.
+	 */
+	public function controls_print_scripts() {
+		global $customizer_reset_error;
+
+		if ( $customizer_reset_error ) {
+			echo '<script> alert("' . $customizer_reset_error . '"); </script>';
+		}
 	}
 }
