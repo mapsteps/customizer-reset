@@ -1,25 +1,45 @@
 .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
-  bottom: 110px;
+	bottom: 110px;
 }
 
 .customizer-reset-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 65px;
-  background-color: #eee;
-  border-bottom: 1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+	height: 65px;
+	background-color: #eee;
+	border-bottom: 1px solid #ddd;
 }
 
 .customizer-reset-footer .button-primary {
-  padding: 10px;
+	padding: 10px;
 }
 
 .customizer-reset-footer .customizer-reset-button {
-  width: 90%;
+	width: 76%;
+}
+
+.customizer-reset-footer .customizer-export-link {
+	width: 12%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	cursor: pointer;
+}
+
+#customize-controls .customizer-reset-footer .customizer-export-link:hover img {
+	opacity: 0.75;
+}
+
+#customize-controls .customizer-reset-footer .customizer-export-link img {
+	max-width: 16px;
+	opacity: 0.4;
 }
 
 .expanded .wp-full-overlay-footer {
-  height: 110px;
+	height: 110px;
 }
