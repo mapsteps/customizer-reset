@@ -1,5 +1,9 @@
 .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
-	bottom: 110px;
+	bottom: 120px;
+}
+
+.expanded .wp-full-overlay-footer {
+	height: 120px;
 }
 
 .customizer-reset-footer {
@@ -9,8 +13,8 @@
 	padding-left: 10px;
 	padding-right: 10px;
 	text-align: center;
-	height: 65px;
-	background-color: #eee;
+	height: 75px;
+	background-color: #fff;
 	border-bottom: 1px solid #ddd;
 }
 
@@ -29,17 +33,37 @@
 	justify-content: center;
 	text-align: center;
 	cursor: pointer;
+	padding: 10px 0;
+	box-shadow: none;
 }
 
-#customize-controls .customizer-reset-footer .customizer-export-link:hover img {
-	opacity: 0.75;
+.customizer-reset-footer .customizer-export-hint {
+	position: absolute;
+	opacity: 0;
+	top: -5px;
+	font-size: 12px;
+	background: rgba(0,0,0,.8);
+	border-radius: 4px;
+	padding: 6px 8px;
+	line-height: 1;
+	color: #fff;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-ms-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+.customizer-reset-footer .customizer-export-link:hover .customizer-export-hint {
+	opacity: 1;
+	top: -10px;
 }
 
 #customize-controls .customizer-reset-footer .customizer-export-link img {
-	max-width: 16px;
+	max-width: 14px;
 	opacity: 0.4;
 }
 
-.expanded .wp-full-overlay-footer {
-	height: 110px;
+#customize-controls .customizer-reset-footer .customizer-export-link:hover img {
+	opacity: .8;
 }

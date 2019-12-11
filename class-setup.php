@@ -59,7 +59,6 @@ class Setup {
 		global $wp;
 
 		// CSS.
-		wp_enqueue_style( 'hint', 'https://cdn.jsdelivr.net/npm/hint.css@2.6.0/hint.min.css', array(), null );
 		wp_enqueue_style( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/css/customizer-reset.css', array(), CUSTOMIZER_RESET_PLUGIN_VERSION );
 
 		// JS.
@@ -74,10 +73,10 @@ class Setup {
 						'text' => __( 'Reset Customizer', 'customizer-reset' ),
 					),
 					'export' => array(
-						'text' => __( 'Export Customizer', 'customizer-reset' ),
+						'text' => __( 'Export', 'customizer-reset' ),
 					),
 					'import' => array(
-						'text' => __( 'Import Customizer', 'customizer-reset' ),
+						'text' => __( 'Import', 'customizer-reset' ),
 					),
 				),
 				'dialogs'       => array(
