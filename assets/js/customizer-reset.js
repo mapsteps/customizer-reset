@@ -34,11 +34,11 @@
 		);
 
 		var $exportButton = $(
-			'<a href="' + customizerResetObj.customizerUrl + '?action=customizer_export&nonce=' + customizerResetObj.nonces.export + '" class="customizer-export-import customizer-export-link hint--top" data-hint="' + customizerResetObj.buttons.export.text + '"><img alt="' + customizerResetObj.buttons.export.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/export.svg"></a>'
+			'<a href="' + customizerResetObj.customizerUrl + '?action=customizer_export&nonce=' + customizerResetObj.nonces.export + '" class="customizer-export-import customizer-export-link hint--top"><img alt="' + customizerResetObj.buttons.export.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/export.svg"><span class="customizer-export-hint">' + customizerResetObj.buttons.export.text + '</span></a>'
 		);
 
 		var $importButton = $(
-			'<a href="" class="customizer-export-import customizer-import-trigger hint--top" data-hint="' + customizerResetObj.buttons.import.text + '"><img alt="' + customizerResetObj.buttons.import.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/import.svg"></a>'
+			'<a href="" class="customizer-export-import customizer-import-trigger hint--top"><img alt="' + customizerResetObj.buttons.import.text + '" src="' + customizerResetObj.pluginUrl + '/assets/images/import.svg"><span class="customizer-export-hint">' + customizerResetObj.buttons.import.text + '</span></a>'
 		);
 
 		$resetButton.on('click', resetCustomizer);
