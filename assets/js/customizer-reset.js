@@ -30,7 +30,7 @@
 		var $buttonsWrapper = $('<div class="customizer-reset-footer"></div>');
 
 		var $resetButton = $(
-			'<button name="customizer-reset" class="button-primary customizer-reset-button">' + customizerResetObj.buttons.reset.text + '</button>'
+			'<button name="customizer-reset" class="button-primary customizer-reset-button"><img src="' + customizerResetObj.pluginUrl + '/assets/images/trash.svg">' + customizerResetObj.buttons.reset.text + '</button>'
 		);
 
 		var $exportButton = $(

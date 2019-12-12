@@ -18,12 +18,16 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.customizer-reset-footer .button-primary {
+.customizer-reset-footer .customizer-reset-button {
+	width: 76%;
 	padding: 10px;
 }
 
-.customizer-reset-footer .customizer-reset-button {
-	width: 76%;
+#customize-controls .customizer-reset-footer .customizer-reset-button img {
+	max-width: 14px;
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-top: -3px;
 }
 
 .customizer-reset-footer .customizer-export-import {
@@ -54,9 +58,7 @@
 	transition: all 0.2s linear;
 }
 
-.customizer-reset-footer
-	.customizer-export-import:hover
-	.customizer-export-hint {
+.customizer-reset-footer .customizer-export-import:hover .customizer-export-hint {
 	opacity: 1;
 	top: -10px;
 }
@@ -66,13 +68,11 @@
 	opacity: 0.4;
 }
 
-#customize-controls
-	.customizer-reset-footer
-	.customizer-export-import:hover
-	img {
+#customize-controls .customizer-reset-footer .customizer-export-import:hover img {
 	opacity: 0.8;
 }
 
+/* Tingle Modal */
 .tingle-modal {
 	background-color: rgba(0, 0, 0, 0.9);
 	/** Should be on top of .wp-full-overlay */
