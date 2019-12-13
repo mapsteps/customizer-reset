@@ -24,7 +24,7 @@ class Setup {
 		add_action( 'customize_register', array( $this, 'export' ) );
 		add_action( 'customize_register', array( $this, 'import' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'customize_controls_print_scripts', [$this, 'controls_print_scripts'] );
+		add_action( 'customize_controls_print_scripts', array( $this, 'controls_print_scripts' ) );
 		add_action( 'wp_ajax_customizer_reset', array( $this, 'handle_ajax' ) );
 	}
 
@@ -84,8 +84,9 @@ class Setup {
 					),
 				),
 				'dialogs'       => array(
-					'resetWarning' => __( "Warning! This will remove all customizations made for this theme via the WordPress customizer.\n\nThis action is irreversible!", 'customizer-reset' ),
-					'emptyImport'  => __( 'Please choose a file to import.', 'customizer-reset' ),
+					'resetWarning'  => __( "Warning! This will remove all customizations made for this theme via the WordPress customizer.\n\nThis action is irreversible!", 'customizer-reset' ),
+					'importWarning' => __( 'Warning! By running import, your old customizer data will be be replaced by this import. If you want to backup your current data, please run export first.', 'customizer-reset' ),
+					'emptyImport'   => __( 'Please choose a file to import.', 'customizer-reset' ),
 				),
 				'importForm'    => array(
 					'templates' => $customizer_import_form,

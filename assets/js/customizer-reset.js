@@ -52,7 +52,8 @@
 
 		$('#customize-footer-actions').prepend($buttonsWrapper);
 		$('.customizer-reset-footer').append(customizerResetObj.importForm.templates);
-		$('.customizer-import-form .close').on('click', closeImportForm)
+		$('.customizer-import-form .close').on('click', closeImportForm);
+		$('.customizer-import-form').on('submit', showImportWarning);
 	}
 
 	/**
@@ -93,6 +94,12 @@
 	function closeImportForm(e) {
 		e.preventDefault();
 		$('.customizer-import-form').removeClass('is-expanded');
+	}
+
+	function showImportWarning(e) {
+		e.preventDefault();
+
+		if (confirm(customizerResetObj.dialogs.importWarning)) this.submit();
 	}
 
 	// Start!
