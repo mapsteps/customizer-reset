@@ -1,3 +1,9 @@
+.border-box,
+.border-box * {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
 .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
 	bottom: 120px;
 }
@@ -10,9 +16,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 	padding-left: 10px;
 	padding-right: 10px;
-	text-align: center;
 	height: 75px;
 	background-color: #fff;
 	border-bottom: 1px solid #ddd;
@@ -32,6 +38,8 @@
 
 .customizer-reset-footer .customizer-export-import {
 	width: 12%;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -51,14 +59,12 @@
 	padding: 6px 8px;
 	line-height: 1;
 	color: #fff;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-ms-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear;
 }
 
-.customizer-reset-footer .customizer-export-import:hover .customizer-export-hint {
+.customizer-reset-footer
+	.customizer-export-import:hover
+	.customizer-export-hint {
 	opacity: 1;
 	top: -10px;
 }
@@ -68,55 +74,69 @@
 	opacity: 0.4;
 }
 
-#customize-controls .customizer-reset-footer .customizer-export-import:hover img {
+#customize-controls
+	.customizer-reset-footer
+	.customizer-export-import:hover
+	img {
 	opacity: 0.8;
 }
 
-/* Tingle Modal */
-.tingle-modal {
-	background-color: rgba(0, 0, 0, 0.9);
-	/** Should be on top of .wp-full-overlay */
-	z-index: 500001;
+.customizer-import-form.is-expanded {
+	padding: 10px;
+	max-height: 500px;
+	transition: all 1s;
 }
 
-.tingle-modal-box__content {
+.customizer-import-form {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	bottom: 0;
 	padding: 0;
-}
-
-.tingle-modal::before {
-	backdrop-filter: blur(2px);
-}
-
-.tingle-modal-box {
-	max-width: 500px;
+	width: 100%;
+	height: 100%;
+	max-height: 0;
+	background-color: #fff;
+	transition: all 0.5s;
 	overflow: hidden;
 }
 
-.customizer-import-header {
-	margin: 0;
-	padding: 1rem 2rem;
-	line-height: 1.2;
-	font-size: 15px;
+.customizer-import-form .close:hover {
+	color: #0073aa;
 }
 
-.customizer-import-header,
-.tingle-modal-box__footer {
-	background-color: #f3f3f3;
+.customizer-import-form .close {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	display: block;
+	width: 17px;
+	height: 17px;
+	line-height: 17px;
+	font-size: 10px;
+	font-weight: 400;
+	text-align: center;
+	color: #444;
+	background-color: #e5e5e5;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
-.tingle-modal-box__footer {
-	padding: 1rem 2rem;
-}
-.customizer-import-content {
-	padding: 1.5rem 2rem;
-}
-
-.customizer-import-form .field:last-child {
-	margin-bottom: 0;
+.customizer-import-form .fields {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
-.customizer-import-form .field {
-	margin-bottom: 20px;
+.customizer-import-form .left-field {
+	width: 70%;
+}
+
+.customizer-import-form .right-field {
+	width: 30%;
+	text-align: right;
+	align-self: flex-end;
 }
 
 .customizer-import-form .label {

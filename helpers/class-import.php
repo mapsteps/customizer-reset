@@ -85,9 +85,7 @@ class Import extends Base {
 		}
 
 		// Import images.
-		if ( isset( $_POST['customizer_import_images'] ) && ! empty( $_POST['customizer_import_images'] ) ) {
-			$data['mods'] = $this->import_images( $data['mods'] );
-		}
+		$data['mods'] = $this->import_images( $data['mods'] );
 
 		// Import custom options.
 		if ( isset( $data['options'] ) ) {

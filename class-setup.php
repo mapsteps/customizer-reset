@@ -60,12 +60,10 @@ class Setup {
 		global $wp;
 
 		// CSS.
-		wp_enqueue_style( 'tingle', 'https://cdn.jsdelivr.net/npm/tingle.js@0.15.2/dist/tingle.min.css', array(), null );
 		wp_enqueue_style( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/css/customizer-reset.css', array(), CUSTOMIZER_RESET_PLUGIN_VERSION );
 
 		// JS.
-		wp_enqueue_script( 'tingle', 'https://cdn.jsdelivr.net/npm/tingle.js@0.15.2/dist/tingle.min.js', array(), null, true );
-		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/js/customizer-reset.js', array( 'jquery', 'tingle' ), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/js/customizer-reset.js', array( 'jquery' ), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
 
 		// Require the customizer import form.
 		require __DIR__ . '/templates/import-form.php';

@@ -19,14 +19,16 @@
 	 * Setup the flow.
 	 */
 	function init() {
-		setupButtons();
-		setupPopup();
+		setupOutput();
 	}
 
 	/**
-	 * Setup reset, export, & import customizer buttons.
+	 * Setup output:
+	 * - reset button
+	 * - export & import buttons
+	 * - import form
 	 */
-	function setupButtons() {
+	function setupOutput() {
 		var $buttonsWrapper = $('<div class="customizer-reset-footer"></div>');
 
 		var $resetButton = $(
@@ -42,41 +44,15 @@
 		);
 
 		$resetButton.on('click', resetCustomizer);
+		$importButton.on('click', openImportForm);
 
 		$buttonsWrapper.append($resetButton);
 		$buttonsWrapper.append($exportButton);
 		$buttonsWrapper.append($importButton);
+
 		$('#customize-footer-actions').prepend($buttonsWrapper);
-	}
-
-	/**
-	 * Setup import form popup.
-	 */
-	function setupPopup() {
-		// Instanciate new modal.
-		importFormPopup = new tingle.modal({
-			footer: true,
-			closeMethods: ['escape', 'button']
-		});
-
-		// Set content.
-		importFormPopup.setContent(customizerResetObj.importForm.templates);
-
-		// Add submit button.
-		importFormPopup.addFooterBtn(customizerResetObj.importForm.labels.submit, 'button button-primary button-large tingle-btn--pull-right', function () {
-			document.querySelector('.customizer-import-form').submit();
-		});
-
-		// Add cancel button.
-		importFormPopup.addFooterBtn(customizerResetObj.importForm.labels.cancel, 'button button-large tingle-btn--pull-right cancel-button', function () {
-			importFormPopup.close();
-		});
-
-		// Set the open trigger.
-		document.querySelector('.customizer-import-trigger').addEventListener('click', function (e) {
-			e.preventDefault();
-			importFormPopup.open();
-		})
+		$('.customizer-reset-footer').append(customizerResetObj.importForm.templates);
+		$('.customizer-import-form .close').on('click', closeImportForm)
 	}
 
 	/**
@@ -107,6 +83,16 @@
 		}).always(function () {
 			$resetButton.attr('disabled', false);
 		});
+	}
+
+	function openImportForm(e) {
+		e.preventDefault();
+		$('.customizer-import-form').addClass('is-expanded');
+	}
+
+	function closeImportForm(e) {
+		e.preventDefault();
+		$('.customizer-import-form').removeClass('is-expanded');
 	}
 
 	// Start!
