@@ -16,7 +16,7 @@ ob_start();
 	<div class="fields">
 		<div class="field left-field">
 			<label class="label" for="customizer_import_file">
-				<?php _e( 'Choose exported json file.', 'customizer-reset' ); ?>
+				<?php _e( 'Select exported json file.', 'customizer-reset' ); ?>
 			</label>
 			<div class="control">
 				<input type="file" id="customizer_import_file" name="customizer_import_file" class="customizer-import-file" accept="application/json">
@@ -28,7 +28,7 @@ ob_start();
 			</div>
 		</div>
 	</div>
-	<span class="close">&#10006;</span>
+	<span class="close dashicons dashicons-no-alt"></span>
 </form>
 
 <?php

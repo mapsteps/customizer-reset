@@ -1,3 +1,4 @@
+/* General */
 .border-box,
 .border-box * {
 	box-sizing: border-box;
@@ -12,6 +13,7 @@
 	height: 120px;
 }
 
+/* Panel */
 .customizer-reset-footer {
 	display: flex;
 	align-items: center;
@@ -24,6 +26,7 @@
 	border-bottom: 1px solid #ddd;
 }
 
+/* Button */
 .customizer-reset-footer .customizer-reset-button {
 	width: 76%;
 	padding: 10px;
@@ -36,6 +39,7 @@
 	margin-top: -3px;
 }
 
+/* Icons */
 .customizer-reset-footer .customizer-export-import {
 	width: 12%;
 	display: -webkit-box;
@@ -45,11 +49,20 @@
 	justify-content: center;
 	text-align: center;
 	cursor: pointer;
-	padding: 10px 0;
+	padding: 20px 0;
 	box-shadow: none;
 }
 
-.customizer-reset-footer .customizer-export-hint {
+#customize-controls .customizer-reset-footer .customizer-export-import img {
+	max-width: 14px;
+	opacity: 0.4;
+}
+
+#customize-controls .customizer-reset-footer .customizer-export-import:hover img {
+	opacity: 0.8;
+}
+
+.customizer-reset-footer .customizer-export-import-hint {
 	position: absolute;
 	opacity: 0;
 	top: -5px;
@@ -62,32 +75,14 @@
 	transition: all 0.2s linear;
 }
 
-.customizer-reset-footer
-	.customizer-export-import:hover
-	.customizer-export-hint {
+.customizer-reset-footer .customizer-export-import:hover .customizer-export-import-hint {
 	opacity: 1;
 	top: -10px;
 }
 
-#customize-controls .customizer-reset-footer .customizer-export-import img {
-	max-width: 14px;
-	opacity: 0.4;
-}
-
-#customize-controls
-	.customizer-reset-footer
-	.customizer-export-import:hover
-	img {
-	opacity: 0.8;
-}
-
-.customizer-import-form.is-expanded {
-	padding: 10px;
-	max-height: 500px;
-	transition: all 1s;
-}
-
+/* Import */
 .customizer-import-form {
+	padding: 10px;
 	display: flex;
 	align-items: center;
 	position: absolute;
@@ -102,8 +97,10 @@
 	overflow: hidden;
 }
 
-.customizer-import-form .close:hover {
-	color: #0073aa;
+.customizer-import-form.is-expanded {
+	padding: 10px;
+	max-height: 500px;
+	transition: all 1s;
 }
 
 .customizer-import-form .close {
@@ -114,23 +111,26 @@
 	width: 17px;
 	height: 17px;
 	line-height: 17px;
-	font-size: 10px;
-	font-weight: 400;
+	font-size: 18px;
 	text-align: center;
 	color: #444;
-	background-color: #e5e5e5;
-	border-radius: 50%;
 	cursor: pointer;
+}
+
+.customizer-import-form .close:hover {
+	color: #0073aa;
 }
 
 .customizer-import-form .fields {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
+	width: 100%;
 }
 
 .customizer-import-form .left-field {
 	width: 70%;
+	overflow: hidden;
 }
 
 .customizer-import-form .right-field {
@@ -147,8 +147,4 @@
 
 .customizer-import-file {
 	font-size: 11px;
-}
-
-.tingle-modal-box__footer .cancel-button {
-	margin-right: 12px;
 }
