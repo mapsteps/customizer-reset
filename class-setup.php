@@ -86,15 +86,10 @@ class Setup {
 				'dialogs'       => array(
 					'resetWarning'  => __( "Warning! This will remove all customizations made for this theme via the WordPress customizer.\n\nThis action is irreversible!", 'customizer-reset' ),
 					'importWarning' => __( 'Warning! By running import, your old customizer data will be be replaced by this import. If you want to backup your current data, please run export first.', 'customizer-reset' ),
-					'emptyImport'   => __( 'Please choose a file to import.', 'customizer-reset' ),
+					'emptyImport'   => __( 'Please select a file to import.', 'customizer-reset' ),
 				),
 				'importForm'    => array(
 					'templates' => $customizer_import_form,
-					'labels'    => array(
-						'submit' => __( 'Import Now', 'customizer-reset' ),
-						'cancel' => __( 'Cancel', 'customizer-reset' ),
-						'close'  => __( 'Close', 'customizer-reset' ),
-					),
 				),
 				'customizerUrl' => admin_url( 'customize.php' ),
 				'pluginUrl'     => CUSTOMIZER_RESET_PLUGIN_URL,
