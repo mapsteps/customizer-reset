@@ -9,13 +9,6 @@
  */
 (function ($) {
 	/**
-	 * Import form popup.
-	 * 
-	 * @var object importFormPopup The tinglejs object.
-	 */
-	var importFormPopup;
-
-	/**
 	 * Setup the flow.
 	 */
 	function init() {
