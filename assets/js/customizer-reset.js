@@ -59,7 +59,7 @@
 
 		if (!confirm(customizerResetObj.dialogs.resetWarning)) return;
 
-		$resetButton.attr('disabled', true);
+		this.disabled = true;
 
 		$.ajax({
 			type: 'post',
@@ -75,7 +75,7 @@
 			wp.customize.state('saved').set(true);
 			location.reload();
 		}).always(function () {
-			$resetButton.attr('disabled', false);
+			this.disabled = false;
 		});
 	}
 
