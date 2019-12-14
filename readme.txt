@@ -10,13 +10,26 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 Reset, Export & Import the WordPress customizer settings with a simple click of a button.
 
-You have made changes in the customizer and want to start fresh without undoing each setting individually? We've got you covered! Reset the WordPress customizer with a simple click of a button.
-
 **Features:**
 
 * Reset Customizer Settings
 * Export Customizer Settings
 * Import Customizer Settings
+
+= Reset Customizer =
+
+You have made changes in the customizer and want to start fresh without undoing each setting individually? We've got you covered! Reset the WordPress customizer with a simple click of a button.
+
+= Export & Import =
+
+Take a snapshot and export your customizer settings with just a click.
+
+Customizer Reset allows you to take a snapshot and export/import your customizer settings from directly within the WordPress customizer. This can be useful if you want to migrate your customizer settings to a different WordPress installation or child-theme.
+
+= Compatible Themes =
+
+This plugin should work with all WordPress themes out of the box!
+It was initally created as a helper plugin for the [Page Builder Framework](https://wp-pagebuilderframework.com/) theme. A fast & minimalistic WordPress theme designed for the new WordPress era.
 
 == Installation ==
 1. Download the customizer-reset.zip file to your computer.
