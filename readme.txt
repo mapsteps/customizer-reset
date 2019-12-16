@@ -46,7 +46,7 @@ Navigate to Appearance > Reset Customizer or Appearance > Customize to access th
 
 == Changelog ==
 
-= 1.1 December xx, 2019 =
+= 1.1 December 16, 2019 =
 * Added export/import functionality
 = 1.0.1 December 05, 2019 =
 * Minor tweaks & improvements
