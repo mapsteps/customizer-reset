@@ -85,7 +85,7 @@ class Setup {
 				),
 				'dialogs'       => array(
 					'resetWarning'  => __( "WARNING! By clicking confirm you will remove ALL cusomtizations made for this theme via the WordPress customizer.", 'customizer-reset' ),
-					'importWarning' => __( 'WARNING! By running the import tool, your old customizer data will be replaced. If you want to backup your current data, please export your data first.', 'customizer-reset' ),
+					'importWarning' => __( 'WARNING! By running the import tool, your existing customizer data will be replaced. If you want to backup your current data, please export your data first.', 'customizer-reset' ),
 					'emptyImport'   => __( 'Please select a file to import.', 'customizer-reset' ),
 				),
 				'importForm'    => array(
