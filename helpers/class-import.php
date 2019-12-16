@@ -185,7 +185,7 @@ class Import extends Base {
 	 * @return array An array of image data.
 	 */
 	private function sideload_image( $file ) {
-		$data = new stdClass();
+		$data = new \stdClass();
 
 		if ( ! function_exists( 'media_handle_sideload' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/media.php';
