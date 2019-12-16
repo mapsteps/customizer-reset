@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset, Customizer Export, Customizer Import, Export, Import
 Requires at least: 4.0
 Tested up to: 5.3
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,9 @@ Navigate to Appearance > Reset Customizer or Appearance > Customize to access th
 
 == Changelog ==
 
+= 1.1.1 December 16, 2019 =
+* Fixed: Fatal error on import
+* Tweaked wording
 = 1.1 December 16, 2019 =
 * Added export/import functionality
 = 1.0.1 December 05, 2019 =
