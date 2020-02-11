@@ -1,16 +1,16 @@
 /* General */
-.border-box,
-.border-box * {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-}
-
 .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
 	bottom: 120px;
 }
 
 .expanded .wp-full-overlay-footer {
 	height: 120px;
+}
+
+.customizer-reset-area,
+.customizer-reset-area * {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 /* Panel */

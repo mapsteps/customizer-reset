@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 ob_start();
 ?>
 
-<form action="" method="post" class="customizer-import-form border-box" enctype="multipart/form-data">
+<form action="" method="post" class="customizer-import-form" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="customizer_import">
 	<?php wp_nonce_field( 'customizer-import', 'nonce' ); ?>
 	<div class="fields">
