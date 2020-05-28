@@ -27,9 +27,16 @@
 }
 
 /* Button */
+.customizer-reset-footer .customizer-reset-button:hover {
+	background-color: #f5573b;
+	border-color: #f5573b;
+}
+
 .customizer-reset-footer .customizer-reset-button {
 	width: 76%;
 	padding: 10px;
+	background-color: tomato;
+	border-color: tomato;
 }
 
 #customize-controls .customizer-reset-footer .customizer-reset-button img {
@@ -67,7 +74,7 @@
 	opacity: 0;
 	top: -5px;
 	font-size: 12px;
-	background: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 4px;
 	padding: 6px 8px;
 	line-height: 1;
