@@ -39,6 +39,11 @@
 	border-color: tomato;
 }
 
+.customizer-reset-footer .customizer-reset-button:active {
+	background-color: tomato;
+	border-color: tomato;
+}
+
 #customize-controls .customizer-reset-footer .customizer-reset-button img {
 	max-width: 14px;
 	vertical-align: middle;
