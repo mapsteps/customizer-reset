@@ -31,6 +31,14 @@ Customizer Reset allows you to take a snapshot and export/import your customizer
 This plugin should work with all WordPress themes out of the box!
 It was initally created as a helper plugin for the [Page Builder Framework](https://wp-pagebuilderframework.com/) theme. A fast & minimalistic WordPress theme designed for the new WordPress era.
 
+=== What's next? ===
+
+If you like Customizer Reset - Export & Import, make sure to check out our other products:
+
+* **[Page Builder Framework](https://wp-pagebuilderframework.com/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=wpbf)** - A fast & minimalistic WordPress theme designed for the new WordPress era.
+* **[Ultimate Dashboard](https://ultimatedashboard.io/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=udb)** - The #1 WordPress plugin to customize your WordPress dashboard and admin area.
+* **[WP Swift Control](https://wpswiftcontrol.com/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=swiftcontrol)** - The plugin to make your clients enjoy WordPress. It replaces the default admin bar to provide the best possible user experience when editing & navigating a website.
+
 == Installation ==
 1. Download the customizer-reset.zip file to your computer.
 1. Unzip the file.
