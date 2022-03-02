@@ -2,7 +2,7 @@
 Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset, Customizer Export, Customizer Import, Export, Import
 Requires at least: 4.0
-Tested up to: 5.7
+Tested up to: 5.9
 Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -37,7 +37,7 @@ If you like Customizer Reset - Export & Import, make sure to check out our other
 
 * **[Page Builder Framework](https://wp-pagebuilderframework.com/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=wpbf)** - A fast & minimalistic WordPress theme designed for the new WordPress era.
 * **[Ultimate Dashboard](https://ultimatedashboard.io/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=udb)** - The #1 WordPress plugin to customize your WordPress dashboard and admin area.
-* **[WP Swift Control](https://wpswiftcontrol.com/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=swiftcontrol)** - The plugin to make your clients enjoy WordPress. It replaces the default admin bar to provide the best possible user experience when editing & navigating a website.
+* **[Better Admin Bar](https://betteradminbar.com/?utm_source=customizer_reset&utm_medium=repository&utm_campaign=bab)** - The plugin to make your clients enjoy WordPress. It replaces the default admin bar to provide the best possible user experience when editing & navigating a website.
 
 == Installation ==
 1. Download the customizer-reset.zip file to your computer.
