@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset, Customizer Export, Customizer Import, Export, Import
 Requires at least: 4.0
 Tested up to: 5.9
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,10 @@ Navigate to Appearance > Reset Customizer or Appearance > Customize to access th
 
 == Changelog ==
 
+= 1.1.4 March 02, 2022 =
+* Tested up to WordPress 5.9
+* Updated description
+* Fixed: Typo
 = 1.1.3 June 20, 2020 =
 * Fixed: Reset button is still blue on :focus
 = 1.1.2 June 3, 2020 =
