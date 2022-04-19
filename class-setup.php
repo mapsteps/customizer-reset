@@ -39,9 +39,16 @@ class Setup {
 	 * Add submenu under "Appearance" menu item.
 	 */
 	public function add_submenu() {
+
+		// Only display link if current user can manage options.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		global $submenu;
 
 		$submenu['themes.php'][] = array( 'Reset Customizer', 'manage_options', admin_url( 'customize.php' ) );
+
 	}
 
 	/**
