@@ -54,7 +54,7 @@ Navigate to Appearance > Reset Customizer or Appearance > Customize to access th
 
 == Changelog ==
 = 1.1.5 April 19, 2022 =
-*Tweak: Only display reset link in appearance menu if user can manage options
+* Tweak: Only display reset link in appearance menu if user can manage options
 = 1.1.4 March 02, 2022 =
 * Tested up to WordPress 5.9
 * Updated description
