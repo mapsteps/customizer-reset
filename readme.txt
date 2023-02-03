@@ -2,29 +2,29 @@
 Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset, Customizer Export, Customizer Import, Export, Import
 Requires at least: 4.0
-Tested up to: 5.9
+Tested up to: 6.1
 Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Reset, Export & Import the WordPress customizer settings with a simple click of a button.
+Easily reset, export, and import your WordPress Customizer settings with just one click of a button.
 
 **Features:**
 
-* Reset Customizer Settings
-* Export Customizer Settings
-* Import Customizer Settings
+* Reset Customizer settings
+* Export Customizer settings
+* Import Customizer settings
 
-= Reset Customizer =
+= Reset the WordPress Customizer =
 
-You have made changes in the customizer and want to start fresh without undoing each setting individually? We've got you covered! Reset the WordPress customizer with a simple click of a button.
+You have made changes in the Customizer and want to start fresh without undoing each setting individually? We've got you covered! Reset the WordPress Customizer with a simple click of a button.
 
-= Export & Import =
+= Export & import Customizer settings =
 
-Take a snapshot and export your customizer settings with just a click.
+Take a snapshot and export your Customizer settings with just a click.
 
-Customizer Reset allows you to take a snapshot and export/import your customizer settings from directly within the WordPress customizer. This can be useful if you want to migrate your customizer settings to a different WordPress installation or child-theme.
+The Customizer Reset plugin allows you to take a snapshot and export/import your settings from directly within the WordPress Customizer. This can be useful if you want to migrate your Customizer settings to a different WordPress installation or child-theme.
 
 = Compatible Themes =
 
@@ -46,11 +46,11 @@ If you like Customizer Reset - Export & Import, make sure to check out our other
 1. Activate the plugin through the *Plugins* menu in WordPress.
 
 == Frequently Asked Questions ==
-= Where do I reset the customizer? =
-Navigate to Appearance > Reset Customizer or Appearance > Customize to access the WordPress customizer and reset, export or import the customizer settings.
+= Where do I reset the WordPress Customizer? =
+Navigate to `Appearance > Reset Customizer` or `Appearance > Customize` to launch the WordPress Customizer. Reset, export or import your settings from the bottom left corner of the Customizer screen.
 
 == Screenshots ==
-1. Reset Customizer Button
+1. Reset Customizer controls
 
 == Changelog ==
 = 1.1.5 April 19, 2022 =

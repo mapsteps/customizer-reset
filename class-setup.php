@@ -91,8 +91,8 @@ class Setup {
 					),
 				),
 				'dialogs'       => array(
-					'resetWarning'  => __( "WARNING! By clicking confirm you will remove ALL customizations made for this theme via the WordPress customizer.", 'customizer-reset' ),
-					'importWarning' => __( 'WARNING! By running the import tool, your existing customizer data will be replaced. If you want to backup your current data, please export your data first.', 'customizer-reset' ),
+					'resetWarning'  => __( "Caution! Proceeding will erase all customizations made for this theme through the WordPress customizer.", 'customizer-reset' ),
+					'importWarning' => __( 'Caution! Using the import tool will overwrite your current customizer data. To save your current customizations, export them prior to importing new data.', 'customizer-reset' ),
 					'emptyImport'   => __( 'Please select a file to import.', 'customizer-reset' ),
 				),
 				'importForm'    => array(

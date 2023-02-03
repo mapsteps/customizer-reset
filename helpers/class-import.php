@@ -57,7 +57,7 @@ class Import extends Base {
 		}
 
 		if ( ! file_exists( $file['file'] ) ) {
-			$customizer_reset_error = __( 'ERROR importing settings! Please try again.', 'customizer-reset' );
+			$customizer_reset_error = __( 'Import error! Please try again.', 'customizer-reset' );
 			return;
 		}
 
@@ -70,17 +70,17 @@ class Import extends Base {
 
 		// Data checks.
 		if ( ! is_array( $data ) ) {
-			$customizer_reset_error = __( 'ERROR importing settings! Please make sure that you uploaded a customizer export file.', 'customizer-reset' );
+			$customizer_reset_error = __( 'Import error! Please ensure that the file you are uploading is a valid Customizer export file.', 'customizer-reset' );
 			return;
 		}
 
 		if ( ! isset( $data['template'] ) || ! isset( $data['mods'] ) ) {
-			$customizer_reset_error = __( 'ERROR importing settings! Please make sure that you uploaded a customizer export file.', 'customizer-reset' );
+			$customizer_reset_error = __( 'Import error! Please ensure that the file you are uploading is a valid Customizer export file.', 'customizer-reset' );
 			return;
 		}
 
 		if ( $data['template'] !== $template ) {
-			$customizer_reset_error = __( 'ERROR importing settings! The settings you uploaded are not for the current theme.', 'customizer-reset' );
+			$customizer_reset_error = __( 'Import error! The customizer settings provided are not compatible with the current theme.', 'customizer-reset' );
 			return;
 		}
 

@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Customizer Reset - Export & Import
  * Plugin URI: https://wp-pagebuilderframework.com/
- * Description: Reset, Export & Import the WordPress customizer settings with a simple click of a button.
+ * Description: Easily reset, export, and import your WordPress Customizer settings with just one click of a button.
  * Version: 1.1.5
  * Author: David Vongries
- * Author URI: https://github.com/MapSteps/
+ * Author URI: https://davidvongries.com
  * Text Domain: customizer-reset
  *
  * @package Customizer_Reset
