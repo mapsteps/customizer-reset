@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset, Customizer Export, Customizer Import, Export, Import
 Requires at least: 4.0
 Tested up to: 6.1
-Stable tag: 1.1.5
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,8 @@ Navigate to `Appearance > Reset Customizer` or `Appearance > Customize` to launc
 1. Reset Customizer controls
 
 == Changelog ==
+= 1.2 February 03, 2023 =
+* Tweak: Improved wording
 = 1.1.5 April 19, 2022 =
 * Tweak: Only display reset link in appearance menu if user can manage options
 = 1.1.4 March 02, 2022 =
