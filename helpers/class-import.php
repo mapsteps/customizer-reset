@@ -7,15 +7,18 @@
 
 namespace CustomizerReset\Helpers;
 
+use stdClass;
+use WP_Customize_Manager;
+
 /**
  * A class that handle customizer import.
  */
 class Import extends Base {
+
 	/**
-	 * An instance of WP_Customize_Manager.
+	 * Instance of `WP_Customize_Manager` object.
 	 *
-	 * @access private
-	 * @var object $wp_customize
+	 * @var WP_Customize_Manager|null
 	 */
 	private $wp_customize;
 
@@ -25,13 +28,16 @@ class Import extends Base {
 	 * @param object $wp_customize `WP_Customize_Manager` instance.
 	 */
 	public function __construct( $wp_customize = null ) {
+
 		$this->wp_customize = $wp_customize;
+
 	}
 
 	/**
 	 * Import the customizer.
 	 */
 	public function import() {
+
 		global $wp_customize;
 		global $customizer_reset_error;
 
@@ -48,7 +54,10 @@ class Import extends Base {
 			'test_form' => false,
 			'test_type' => false,
 		);
-		$file      = wp_handle_upload( $_FILES['customizer_import_file'], $overrides );
+
+		$upload_data = ! empty( $_FILES['customizer_import_file'] ) && is_array( $_FILES['customizer_import_file'] ) ? $_FILES['customizer_import_file'] : [];
+
+		$file = wp_handle_upload( $upload_data, $overrides );
 
 		// Make sure we have an uploaded file.
 		if ( isset( $file['error'] ) ) {
@@ -66,7 +75,7 @@ class Import extends Base {
 		$data = json_decode( $raw, true );
 
 		// Remove the uploaded file.
-		unlink( $file['file'] );
+		wp_delete_file( $file['file'] );
 
 		// Data checks.
 		if ( ! is_array( $data ) ) {
@@ -126,16 +135,17 @@ class Import extends Base {
 
 		// Call the customize_save_after action.
 		do_action( 'customize_save_after', $wp_customize );
+
 	}
 
 	/**
 	 * Imports images for settings saved as mods.
 	 *
-	 * @access private
 	 * @param array $mods An array of customizer mods.
 	 * @return array The mods array with any new import data.
 	 */
 	private function import_images( $mods ) {
+
 		foreach ( $mods as $key => $val ) {
 
 			if ( $this->is_image_url( $val ) ) {
@@ -156,36 +166,38 @@ class Import extends Base {
 		}
 
 		return $mods;
+
 	}
 
 	/**
 	 * Checks to see whether a string is an image url or not.
 	 *
-	 * @access private
-	 * @param string $string The string to check.
+	 * @param string $str The string to check.
 	 * @return bool Whether the string is an image url or not.
 	 */
-	private function is_image_url( $string = '' ) {
-		if ( is_string( $string ) ) {
+	private function is_image_url( $str = '' ) {
 
-			if ( preg_match( '/\.(jpg|jpeg|png|gif)/i', $string ) ) {
+		if ( is_string( $str ) ) {
+
+			if ( preg_match( '/\.(jpg|jpeg|png|gif)/i', $str ) ) {
 				return true;
 			}
 		}
 
 		return false;
+
 	}
 
 	/**
 	 * Taken from the core media_sideload_image function and
 	 * modified to return an array of data instead of html.
 	 *
-	 * @access private
 	 * @param string $file The image file path.
-	 * @return array An array of image data.
+	 * @return stdClass Object containing image data.
 	 */
 	private function sideload_image( $file ) {
-		$data = new \stdClass();
+
+		$data = new stdClass();
 
 		if ( ! function_exists( 'media_handle_sideload' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/media.php';
@@ -213,12 +225,13 @@ class Import extends Base {
 
 			// If error storing permanently, unlink.
 			if ( is_wp_error( $id ) ) {
-				@unlink( $file_array['tmp_name'] );
+				wp_delete_file( $file_array['tmp_name'] );
 				return $id;
 			}
 
+			$meta = wp_get_attachment_metadata( $id );
+
 			// Build the object to return.
-			$meta                = wp_get_attachment_metadata( $id );
 			$data->attachment_id = $id;
 			$data->url           = wp_get_attachment_url( $id );
 			$data->thumbnail_url = wp_get_attachment_thumb_url( $id );
@@ -227,5 +240,7 @@ class Import extends Base {
 		}
 
 		return $data;
+
 	}
+
 }

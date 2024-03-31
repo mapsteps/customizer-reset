@@ -16,7 +16,7 @@ ob_start();
 	<div class="fields">
 		<div class="field left-field">
 			<label class="label" for="customizer_import_file">
-				<?php _e( 'Select JSON file to import.', 'customizer-reset' ); ?>
+				<?php esc_html_e( 'Select JSON file to import.', 'customizer-reset' ); ?>
 			</label>
 			<div class="control">
 				<input type="file" id="customizer_import_file" name="customizer_import_file" class="customizer-import-file" accept="application/json">
@@ -24,7 +24,7 @@ ob_start();
 		</div>
 		<div class="field right-field">
 			<div class="control">
-				<button class="button button-primary"><?php _e( 'Import', 'customizer-reset' ); ?></button>
+				<button class="button button-primary"><?php esc_html_e( 'Import', 'customizer-reset' ); ?></button>
 			</div>
 		</div>
 	</div>

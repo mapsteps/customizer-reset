@@ -9,15 +9,25 @@ namespace CustomizerReset;
 
 use CustomizerReset\Helpers\Export;
 use CustomizerReset\Helpers\Import;
+use WP_Customize_Manager;
 
 /**
  * Setup customizer reset.
  */
 class Setup {
+
+	/**
+	 * Instance of `WP_Customize_Manager` object.
+	 *
+	 * @var WP_Customize_Manager|null
+	 */
+	public $wp_customize = null;
+
 	/**
 	 * Setup action & filter hooks.
 	 */
 	public function __construct() {
+
 		add_action( 'init', array( $this, 'setup_text_domain' ) );
 		add_action( 'admin_menu', array( $this, 'add_submenu' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
@@ -26,13 +36,16 @@ class Setup {
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'customize_controls_print_scripts', array( $this, 'controls_print_scripts' ) );
 		add_action( 'wp_ajax_customizer_reset', array( $this, 'handle_ajax' ) );
+
 	}
 
 	/**
 	 * Setup textdomain.
 	 */
 	public function setup_text_domain() {
-		load_plugin_textdomain( 'customizer-reset', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+
+		load_plugin_textdomain( 'customizer-reset', false, plugin_basename( __DIR__ ) . '/languages' );
+
 	}
 
 	/**
@@ -57,13 +70,16 @@ class Setup {
 	 * @param object $wp_customize `WP_Customize_Manager` instance.
 	 */
 	public function customize_register( $wp_customize ) {
+
 		$this->wp_customize = $wp_customize;
+
 	}
 
 	/**
 	 * Enqueue assets.
 	 */
 	public function enqueue_scripts() {
+
 		global $wp;
 
 		// CSS.
@@ -91,7 +107,7 @@ class Setup {
 					),
 				),
 				'dialogs'       => array(
-					'resetWarning'  => __( "Caution! Proceeding will erase all customizations made for this theme through the WordPress customizer.", 'customizer-reset' ),
+					'resetWarning'  => __( 'Caution! Proceeding will erase all customizations made for this theme through the WordPress customizer.', 'customizer-reset' ),
 					'importWarning' => __( 'Caution! Using the import tool will overwrite your current customizer data. To save your current customizations, export them prior to importing new data.', 'customizer-reset' ),
 					'emptyImport'   => __( 'Please select a file to import.', 'customizer-reset' ),
 				),
@@ -107,28 +123,38 @@ class Setup {
 				),
 			)
 		);
+
 	}
 
 	/**
 	 * Handle ajax request of customizer reset.
 	 */
 	public function handle_ajax() {
-		if ( ! $this->wp_customize->is_preview() ) {
+
+		if ( is_null( $this->wp_customize ) || ! $this->wp_customize->is_preview() ) {
 			wp_send_json_error( 'not_preview' );
 		}
 
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'customizer-reset' ) ) {
+		$nonce = ! empty( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'customizer-reset' ) ) {
 			wp_send_json_error( 'invalid_nonce' );
 		}
 
 		$this->reset_customizer();
 		wp_send_json_success();
+
 	}
 
 	/**
 	 * Reset customizer.
 	 */
 	public function reset_customizer() {
+
+		if ( is_null( $this->wp_customize ) ) {
+			return;
+		}
+
 		$settings = $this->wp_customize->settings();
 
 		// Remove theme_mod settings registered in customizer.
@@ -137,13 +163,15 @@ class Setup {
 				remove_theme_mod( $setting->id );
 			}
 		}
+
 	}
 
 	/**
 	 * Setup customizer export.
 	 */
 	public function export() {
-		if ( ! is_customize_preview() ) {
+
+		if ( is_null( $this->wp_customize ) || ! is_customize_preview() ) {
 			return;
 		}
 
@@ -151,19 +179,23 @@ class Setup {
 			return;
 		}
 
-		if ( ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( $_GET['nonce'], 'customizer-export' ) ) {
+		$nonce = ! empty( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'customizer-export' ) ) {
 			return;
 		}
 
 		$exporter = new Export( $this->wp_customize );
 
 		$exporter->export();
+
 	}
 
 	/**
 	 * Setup customizer import.
 	 */
 	public function import() {
+
 		if ( ! is_customize_preview() ) {
 			return;
 		}
@@ -172,7 +204,9 @@ class Setup {
 			return;
 		}
 
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'customizer-import' ) ) {
+		$nonce = ! empty( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'customizer-import' ) ) {
 			return;
 		}
 
@@ -181,16 +215,20 @@ class Setup {
 		$importer = new Import();
 
 		$importer->import();
+
 	}
 
 	/**
 	 * Prints scripts for the control.
 	 */
 	public function controls_print_scripts() {
+
 		global $customizer_reset_error;
 
 		if ( $customizer_reset_error ) {
-			echo '<script> alert("' . $customizer_reset_error . '"); </script>';
+			echo '<script> alert("' . esc_html( $customizer_reset_error ) . '"); </script>';
 		}
+
 	}
+
 }

@@ -11,6 +11,7 @@ namespace CustomizerReset\Helpers;
  * A class that handle customizer export.
  */
 class Export extends Base {
+
 	/**
 	 * An instance of WP_Customize_Manager.
 	 *
@@ -25,13 +26,16 @@ class Export extends Base {
 	 * @param object $wp_customize `WP_Customize_Manager` instance.
 	 */
 	public function __construct( $wp_customize = null ) {
+
 		$this->wp_customize = $wp_customize;
+
 	}
 
 	/**
 	 * Export the customizer.
 	 */
 	public function export() {
+
 		$theme    = get_stylesheet();
 		$template = get_template();
 		$charset  = get_option( 'blog_charset' );
@@ -60,7 +64,7 @@ class Export extends Base {
 				}
 
 				// Don't save core options.
-				if ( in_array( $key, $this->$core_options, true ) ) {
+				if ( in_array( $key, $this->core_options, true ) ) {
 					continue;
 				}
 
@@ -88,5 +92,6 @@ class Export extends Base {
 
 		// Start the download.
 		exit;
+
 	}
 }

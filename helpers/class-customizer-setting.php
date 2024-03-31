@@ -14,6 +14,7 @@ use WP_Customize_Setting;
  * the protected updated method when importing options.
  */
 final class Customizer_Setting extends WP_Customize_Setting {
+
 	/**
 	 * Import an option value for this setting.
 	 *
@@ -21,6 +22,9 @@ final class Customizer_Setting extends WP_Customize_Setting {
 	 * @return void
 	 */
 	public function import( $value ) {
+
 		$this->update( $value );
+
 	}
+
 }
