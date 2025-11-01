@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Customizer Reset, Customizer, Reset, Customizer Export, Customizer Import, Export, Import
 Requires at least: 4.0
 Tested up to: 6.8
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,8 @@ Navigate to `Appearance > Reset Customizer` or `Appearance > Customize` to launc
 1. Reset Customizer controls
 
 == Changelog ==
+= 1.4.1 November 1, 2025 =
+* Fixed: Updated tested up to to WordPress 6.8
 = 1.4 May 10, 2024 =
 * Fixed: Deprecated messages
 * Tested up to WordPress 6.5
