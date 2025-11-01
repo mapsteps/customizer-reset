@@ -1,0 +1,14 @@
+# Cache
+.parcel-cache/
+
+# OS specific files
+.DS_Store
+
+# phpcs & editor's setting related
+.idea
+.vscode/
+phpcs.xml
+.editorconfig
+
+# ignore build tools
+node_modules/
