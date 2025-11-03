@@ -54,7 +54,7 @@ Navigate to `Appearance > Reset Customizer` or `Appearance > Customize` to launc
 
 == Changelog ==
 = 1.4.1 November 1, 2025 =
-* Fixed: Updated tested up to to WordPress 6.8
+* Tested up to to WordPress 6.8
 = 1.4 May 10, 2024 =
 * Fixed: Deprecated messages
 * Tested up to WordPress 6.5
