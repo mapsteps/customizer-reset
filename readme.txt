@@ -4,7 +4,7 @@ Tags: customizer reset, customizer export, customizer import, reset, customizer
 Requires at least: 4.7
 Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 1.5
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Yes, Customizer Reset works with every theme that uses the WordPress Customizer.
 1. Reset, export & import tools at the bottom of the Customizer
 
 == Changelog ==
-= 1.5 November 08, 2026 =
+= 2.0 November 08, 2026 =
 * Fixed: Security improvements (capability checks for reset, export & import)
 * Fixed: Imported files are no longer stored in the uploads folder
 * Fixed: Images that already exist on the site are no longer imported twice
