@@ -7,6 +7,8 @@
 
 namespace CustomizerReset\Helpers;
 
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
 /**
  * A class that handle customizer export.
  */
@@ -84,8 +86,9 @@ class Export extends Base {
 		}
 
 		// Set the download headers.
-		header( 'Content-disposition: attachment; filename=Customizer-Export-of-' . $theme . '.json' );
-		header( 'Content-Type: application/octet-stream; charset=' . $charset );
+		nocache_headers();
+		header( 'Content-Disposition: attachment; filename=Customizer-Export-of-' . sanitize_file_name( $theme ) . '.json' );
+		header( 'Content-Type: application/json; charset=' . $charset );
 
 		// Output the export data.
 		echo wp_json_encode( $data );

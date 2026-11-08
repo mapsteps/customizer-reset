@@ -1,162 +1,243 @@
-/* General */
+/* Make room for the reset bar (64px) above the footer actions (45px). */
 .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
-	bottom: 120px;
+	bottom: 109px;
 }
 
 .expanded .wp-full-overlay-footer {
-	height: 120px;
+	height: 109px;
 }
 
 .customizer-reset-area,
 .customizer-reset-area * {
 	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
 }
 
-/* Panel */
+/* Bar */
 .customizer-reset-footer {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	gap: 8px;
 	position: relative;
-	padding-left: 10px;
-	padding-right: 10px;
-	height: 75px;
+	padding: 12px;
+	height: 64px;
 	background-color: #fff;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #dcdcde;
 }
 
-/* Button */
-.customizer-reset-footer .customizer-reset-button:hover {
-	background-color: #f5573b;
-	border-color: #f5573b;
+/* Reset button */
+#customize-controls .customizer-reset-footer .customizer-reset-button {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin: 0;
+	padding: 0 16px;
+	height: 40px;
+	min-height: 40px;
+	border: 0;
+	border-radius: 8px;
+	background-color: #e5533d;
+	box-shadow: none;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1;
+	text-shadow: none;
+	transition: background-color 0.2s, color 0.2s, opacity 0.2s, outline-color 0.2s;
 }
 
-.customizer-reset-footer .customizer-reset-button {
-	width: 76%;
-	padding: 10px;
-	background-color: tomato;
-	border-color: tomato;
+#customize-controls .customizer-reset-footer .customizer-reset-button:hover {
+	background-color: #cf3f2a;
 }
 
-.customizer-reset-footer .customizer-reset-button:active {
-	background-color: tomato;
-	border-color: tomato;
+#customize-controls .customizer-reset-footer .customizer-reset-button:focus-visible {
+	outline: 2px solid #e5533d;
+	outline-offset: 2px;
+}
+
+#customize-controls .customizer-reset-footer .customizer-reset-button[disabled] {
+	opacity: 0.6;
 }
 
 #customize-controls .customizer-reset-footer .customizer-reset-button img {
-	max-width: 14px;
-	vertical-align: middle;
-	margin-right: 10px;
-	margin-top: -3px;
+	width: 13px;
+	height: auto;
 }
 
-/* Icons */
-.customizer-reset-footer .customizer-export-import {
-	width: 12%;
-	display: -webkit-box;
-	display: -ms-flexbox;
+/* Icon buttons (export, import & close) */
+#customize-controls .customizer-reset-footer .customizer-export-import,
+#customize-controls .customizer-reset-footer .customizer-reset-icon-button {
 	display: flex;
+	flex: none;
 	align-items: center;
 	justify-content: center;
-	text-align: center;
-	cursor: pointer;
-	padding: 20px 0;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	background: #fff;
 	box-shadow: none;
+	color: #50575e;
+	cursor: pointer;
+	transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+#customize-controls .customizer-reset-footer .customizer-export-import:hover,
+#customize-controls .customizer-reset-footer .customizer-reset-icon-button:hover {
+	border-color: #c3c4c7;
+	background-color: #f6f7f7;
+	color: #1e1e1e;
+}
+
+#customize-controls .customizer-reset-footer .customizer-export-import:focus-visible,
+#customize-controls .customizer-reset-footer .customizer-reset-icon-button:focus-visible {
+	outline: 2px solid var(--wp-admin-theme-color, #2271b1);
+	outline-offset: 1px;
 }
 
 #customize-controls .customizer-reset-footer .customizer-export-import img {
-	max-width: 14px;
-	opacity: 0.4;
+	width: 14px;
+	height: auto;
+	opacity: 0.55;
+	transition: opacity 0.2s;
 }
 
-#customize-controls .customizer-reset-footer .customizer-export-import:hover img {
-	opacity: 0.8;
+#customize-controls .customizer-reset-footer .customizer-export-import:hover img,
+#customize-controls .customizer-reset-footer .customizer-export-import:focus-visible img {
+	opacity: 0.9;
 }
 
+/* Tooltips */
 .customizer-reset-footer .customizer-export-import-hint {
 	position: absolute;
-	opacity: 0;
-	top: -5px;
-	font-size: 12px;
-	background-color: rgba(0, 0, 0, 0.8);
-	border-radius: 4px;
+	bottom: calc(100% + 4px);
+	left: 50%;
+	z-index: 10;
 	padding: 6px 8px;
-	line-height: 1;
+	border-radius: 4px;
+	background-color: #1e1e1e;
 	color: #fff;
-	transition: all 0.2s linear;
+	font-size: 12px;
+	line-height: 1;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, 4px);
+	transition: opacity 0.2s, transform 0.2s;
 }
 
-.customizer-reset-footer .customizer-export-import:hover .customizer-export-import-hint {
+.customizer-reset-footer .customizer-export-import:hover .customizer-export-import-hint,
+.customizer-reset-footer .customizer-export-import:focus-visible .customizer-export-import-hint {
 	opacity: 1;
-	top: -10px;
+	transform: translate(-50%, 0);
 }
 
-/* Import */
+/* Import form: the inner row slides up on top of the bar, the form clips it. */
 .customizer-import-form {
-	padding: 10px;
-	display: flex;
-	align-items: center;
 	position: absolute;
+	top: 0;
 	left: 0;
-	bottom: 0;
-	padding: 0;
 	width: 100%;
 	height: 100%;
-	max-height: 0;
-	background-color: #fff;
-	transition: all 0.5s;
 	overflow: hidden;
+	overflow: clip; /* Unlike hidden, clip can't be scrolled by focusing the file field. */
+	visibility: hidden;
+	pointer-events: none;
+	transition: visibility 0s 0.3s;
 }
 
 .customizer-import-form.is-expanded {
-	padding: 10px;
-	max-height: 500px;
-	transition: all 1s;
+	visibility: visible;
+	pointer-events: auto;
+	transition: visibility 0s;
 }
 
-.customizer-import-form .close {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	display: block;
-	width: 17px;
-	height: 17px;
-	line-height: 17px;
-	font-size: 18px;
-	text-align: center;
-	color: #444;
-	cursor: pointer;
-}
-
-.customizer-import-form .close:hover {
-	color: #0073aa;
-}
-
-.customizer-import-form .fields {
+.customizer-import-inner {
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
-	width: 100%;
+	gap: 8px;
+	padding: 0 12px;
+	height: 100%;
+	background-color: #fff;
+	transform: translateY(100%);
+	transition: transform 0.3s ease;
 }
 
-.customizer-import-form .left-field {
-	width: 70%;
-	overflow: hidden;
+.customizer-import-form.is-expanded .customizer-import-inner {
+	transform: translateY(0);
 }
 
-.customizer-import-form .right-field {
-	width: 30%;
-	text-align: right;
-	align-self: flex-end;
+@media (prefers-reduced-motion: reduce) {
+	.customizer-import-form,
+	.customizer-import-inner {
+		transition: none;
+	}
 }
 
-.customizer-import-form .label {
-	display: block;
-	margin-bottom: 5px;
-	font-weight: 600;
-}
-
+/* Hide the native file field, the picker label opens it. */
 .customizer-import-file {
-	font-size: 11px;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+.customizer-import-picker {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	gap: 6px;
+	min-width: 0;
+	padding: 0 12px;
+	height: 40px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 8px;
+	color: #50575e;
+	cursor: pointer;
+	transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.customizer-import-picker .dashicons {
+	flex: none;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.customizer-import-picker:hover,
+.customizer-import-file:focus-visible + .customizer-import-picker {
+	border-color: var(--wp-admin-theme-color, #2271b1);
+	color: var(--wp-admin-theme-color, #2271b1);
+}
+
+.customizer-import-file:focus-visible + .customizer-import-picker {
+	outline: 2px solid var(--wp-admin-theme-color, #2271b1);
+	outline-offset: 1px;
+}
+
+.customizer-import-picker.has-file {
+	border-style: solid;
+	color: #1e1e1e;
+}
+
+.customizer-import-filename {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#customize-controls .customizer-import-form .customizer-import-submit {
+	flex: none;
+	margin: 0;
+	padding: 0 16px;
+	height: 40px;
+	min-height: 40px;
+	border-radius: 8px;
+	font-weight: 500;
+	line-height: 38px;
+	transition: background-color 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
 }

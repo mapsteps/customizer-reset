@@ -1,35 +1,23 @@
 <?php
 /**
- * Template for displaying customizer import form.
+ * Template for the customizer import form.
  *
  * @package Customizer_Reset
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
-
-ob_start();
 ?>
 
 <form action="" method="post" class="customizer-import-form" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="customizer_import">
 	<?php wp_nonce_field( 'customizer-import', 'nonce' ); ?>
-	<div class="fields">
-		<div class="field left-field">
-			<label class="label" for="customizer_import_file">
-				<?php esc_html_e( 'Select JSON file to import.', 'customizer-reset' ); ?>
-			</label>
-			<div class="control">
-				<input type="file" id="customizer_import_file" name="customizer_import_file" class="customizer-import-file" accept="application/json">
-			</div>
-		</div>
-		<div class="field right-field">
-			<div class="control">
-				<button class="button button-primary"><?php esc_html_e( 'Import', 'customizer-reset' ); ?></button>
-			</div>
-		</div>
+	<div class="customizer-import-inner">
+		<input type="file" id="customizer_import_file" name="customizer_import_file" class="customizer-import-file" accept=".json,application/json">
+		<label class="customizer-import-picker" for="customizer_import_file">
+			<span class="dashicons dashicons-upload" aria-hidden="true"></span>
+			<span class="customizer-import-filename" data-placeholder="<?php esc_attr_e( 'Choose a .json file', 'customizer-reset' ); ?>"><?php esc_html_e( 'Choose a .json file', 'customizer-reset' ); ?></span>
+		</label>
+		<button type="submit" class="button button-primary customizer-import-submit" disabled><?php esc_html_e( 'Import', 'customizer-reset' ); ?></button>
+		<button type="button" class="close customizer-reset-icon-button" aria-label="<?php esc_attr_e( 'Close', 'customizer-reset' ); ?>"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span></button>
 	</div>
-	<span class="close dashicons dashicons-no-alt"></span>
 </form>
-
-<?php
-$customizer_import_form = ob_get_clean();

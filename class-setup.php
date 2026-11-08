@@ -7,6 +7,8 @@
 
 namespace CustomizerReset;
 
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
 use CustomizerReset\Helpers\Export;
 use CustomizerReset\Helpers\Import;
 use WP_Customize_Manager;
@@ -28,7 +30,6 @@ class Setup {
 	 */
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'setup_text_domain' ) );
 		add_action( 'admin_menu', array( $this, 'add_submenu' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'customize_register', array( $this, 'export' ) );
@@ -40,34 +41,26 @@ class Setup {
 	}
 
 	/**
-	 * Setup textdomain.
-	 */
-	public function setup_text_domain() {
-
-		load_plugin_textdomain( 'customizer-reset', false, plugin_basename( __DIR__ ) . '/languages' );
-
-	}
-
-	/**
-	 * Add submenu under "Appearance" menu item.
+	 * Add a "Reset Customizer" link to the "Appearance" menu.
 	 */
 	public function add_submenu() {
 
-		// Only display link if current user can manage options.
+		// Only display the link if the current user can manage options.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
 		global $submenu;
 
-		$submenu['themes.php'][] = array( 'Reset Customizer', 'manage_options', admin_url( 'customize.php' ) );
+		// A plain link to the Customizer, add_theme_page() would register an admin page.
+		$submenu['themes.php'][] = array( __( 'Reset Customizer', 'customizer-reset' ), 'manage_options', admin_url( 'customize.php' ) ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 	}
 
 	/**
-	 * Store a reference to `WP_Customize_Manager` instance
+	 * Store a reference to the `WP_Customize_Manager` instance.
 	 *
-	 * @param object $wp_customize `WP_Customize_Manager` instance.
+	 * @param WP_Customize_Manager $wp_customize `WP_Customize_Manager` instance.
 	 */
 	public function customize_register( $wp_customize ) {
 
@@ -80,16 +73,8 @@ class Setup {
 	 */
 	public function enqueue_scripts() {
 
-		global $wp;
-
-		// CSS.
-		wp_enqueue_style( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/css/customizer-reset.css', array(), CUSTOMIZER_RESET_PLUGIN_VERSION );
-
-		// JS.
-		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . '/assets/js/customizer-reset.js', array( 'jquery' ), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
-
-		// Require the customizer import form.
-		require __DIR__ . '/templates/import-form.php';
+		wp_enqueue_style( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . 'assets/css/customizer-reset.css', array(), CUSTOMIZER_RESET_PLUGIN_VERSION );
+		wp_enqueue_script( 'customizer-reset', CUSTOMIZER_RESET_PLUGIN_URL . 'assets/js/customizer-reset.js', array( 'jquery', 'customize-controls' ), CUSTOMIZER_RESET_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'customizer-reset',
@@ -107,16 +92,16 @@ class Setup {
 					),
 				),
 				'dialogs'       => array(
-					'resetWarning'  => __( 'Caution! Proceeding will erase all customizations made for this theme through the WordPress customizer.', 'customizer-reset' ),
-					'importWarning' => __( 'Caution! Using the import tool will overwrite your current customizer data. To save your current customizations, export them prior to importing new data.', 'customizer-reset' ),
+					'resetWarning'  => __( 'Caution! Proceeding will erase all customizations made for this theme through the WordPress Customizer.', 'customizer-reset' ),
+					'importWarning' => __( 'Caution! Using the import tool will overwrite your current Customizer data. To save your current customizations, export them prior to importing new data.', 'customizer-reset' ),
 					'emptyImport'   => __( 'Please select a file to import.', 'customizer-reset' ),
+					'resetError'    => __( 'The Customizer could not be reset. Please reload the page and try again.', 'customizer-reset' ),
 				),
 				'importForm'    => array(
-					'templates' => $customizer_import_form,
+					'templates' => $this->import_form(),
 				),
 				'customizerUrl' => admin_url( 'customize.php' ),
 				'pluginUrl'     => CUSTOMIZER_RESET_PLUGIN_URL,
-				'currentUrl'    => home_url( $wp->request ),
 				'nonces'        => array(
 					'reset'  => wp_create_nonce( 'customizer-reset' ),
 					'export' => wp_create_nonce( 'customizer-export' ),
@@ -127,18 +112,34 @@ class Setup {
 	}
 
 	/**
-	 * Handle ajax request of customizer reset.
+	 * The import form markup.
+	 *
+	 * @return string The import form.
+	 */
+	private function import_form() {
+
+		ob_start();
+		require __DIR__ . '/templates/import-form.php';
+
+		return ob_get_clean();
+
+	}
+
+	/**
+	 * Handle the ajax request of the customizer reset.
 	 */
 	public function handle_ajax() {
 
-		if ( is_null( $this->wp_customize ) || ! $this->wp_customize->is_preview() ) {
-			wp_send_json_error( 'not_preview' );
+		if ( ! check_ajax_referer( 'customizer-reset', 'nonce', false ) ) {
+			wp_send_json_error( 'invalid_nonce' );
 		}
 
-		$nonce = ! empty( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_send_json_error( 'insufficient_permissions' );
+		}
 
-		if ( ! wp_verify_nonce( $nonce, 'customizer-reset' ) ) {
-			wp_send_json_error( 'invalid_nonce' );
+		if ( is_null( $this->wp_customize ) || ! $this->wp_customize->is_preview() ) {
+			wp_send_json_error( 'not_preview' );
 		}
 
 		$this->reset_customizer();
@@ -181,7 +182,7 @@ class Setup {
 
 		$nonce = ! empty( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : '';
 
-		if ( ! wp_verify_nonce( $nonce, 'customizer-export' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'customizer-export' ) || ! current_user_can( 'edit_theme_options' ) ) {
 			return;
 		}
 
@@ -196,7 +197,7 @@ class Setup {
 	 */
 	public function import() {
 
-		if ( ! is_customize_preview() ) {
+		if ( is_null( $this->wp_customize ) || ! is_customize_preview() ) {
 			return;
 		}
 
@@ -206,27 +207,27 @@ class Setup {
 
 		$nonce = ! empty( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
-		if ( ! wp_verify_nonce( $nonce, 'customizer-import' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'customizer-import' ) || ! current_user_can( 'edit_theme_options' ) ) {
 			return;
 		}
 
 		require_once __DIR__ . '/helpers/class-customizer-setting.php';
 
-		$importer = new Import();
+		$importer = new Import( $this->wp_customize );
 
 		$importer->import();
 
 	}
 
 	/**
-	 * Prints scripts for the control.
+	 * Show import errors.
 	 */
 	public function controls_print_scripts() {
 
 		global $customizer_reset_error;
 
 		if ( $customizer_reset_error ) {
-			echo '<script> alert("' . esc_html( $customizer_reset_error ) . '"); </script>';
+			echo '<script>alert(' . wp_json_encode( wp_strip_all_tags( $customizer_reset_error ) ) . ');</script>';
 		}
 
 	}
