@@ -86,9 +86,6 @@ No. An export can only be imported into the same theme (or a child theme of it),
 = Does it work with my theme? =
 Yes, Customizer Reset works with every theme that uses the WordPress Customizer. Block themes that only use the Site Editor don't have Customizer settings to reset.
 
-== Screenshots ==
-1. Reset, export & import tools at the bottom of the Customizer
-
 == Changelog ==
 = 2.0 November 08, 2026 =
 * Fixed: Security improvements (capability checks for reset, export & import)
